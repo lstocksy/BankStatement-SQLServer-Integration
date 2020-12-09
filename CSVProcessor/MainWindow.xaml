@@ -1,0 +1,44 @@
+﻿<Window x:Class="CSVProcessor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CSVProcessor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None" Background="Transparent" AllowsTransparency="True">
+    <Border CornerRadius="8" Background="#FF1D1D1D" BorderBrush="#FF1D1D1D" BorderThickness="1">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Height="30" Width="41" Content="X" FontSize="20" Foreground="Gray" Background="Transparent" BorderBrush="Transparent" FontWeight="Medium" Margin="0,0,0.4,0" VerticalAlignment="Top" HorizontalAlignment="Right" Click="CloseWindow"></Button>
+            <DataGrid Grid.Row="1" FontSize="20" x:Name="UnpaidMembersGrid" RowBackground="Transparent" ItemsSource="{Binding}" Foreground="White" HorizontalAlignment="Left" Height="278" Margin="56,20.6,0,0" VerticalAlignment="Top" Width="690" AutoGenerateColumns="False" Background="Transparent">
+                <DataGrid.Resources>
+                    <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF1D1D1D" />
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding}" Header="Name" Width="*"/>
+                </DataGrid.Columns>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Grid Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+            <Button x:Name= "GetCSVButton" FontSize="20" Content="Select file" Foreground="White" Background="Transparent" BorderBrush="White" HorizontalAlignment="Left" Margin="331,333.6,0,0" VerticalAlignment="Top" Width="134" Click="GetCSVFile" Height="34" Grid.Row="1"/>
+        </Grid>
+    </Border>
+</Window>
